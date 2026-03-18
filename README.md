@@ -102,7 +102,7 @@ external_converters:
 
 Tested with:
 
-- Zigbee2MQTT **2.x**
+- Zigbee2MQTT **2.9.1**
 - Tuya TS0601 (`_TZE284_qf5mzewi`)
 
 ---
