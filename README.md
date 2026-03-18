@@ -1,49 +1,110 @@
 # Zigbee2MQTT Converter for Tuya TS0601 (_TZE284_qf5mzewi)
 
-External converter for Tuya temperature & humidity sensor with display.
+External converter for the Tuya **TS0601 temperature & humidity sensor with display**, compatible with **Zigbee2MQTT**.
 
-Fixes:
+This converter adds support for the device and fixes a **known firmware time synchronization bug**.
 
-- Unsupported device in Zigbee2MQTT
-- Incorrect time display caused by Tuya MCU firmware bug
+![TS0601 Sensor](/pictures/sensor.png)
 
-## Features
+---
+
+# Device
+
+| Property | Value |
+|--------|--------|
+| Model | TS0601 |
+| Manufacturer | `_TZE284_qf5mzewi` |
+| Vendor | Tuya |
+| Type | Temperature & Humidity Sensor |
+| Display | Temperature, Humidity, Comfort Indicator |
+| Power | Battery |
+
+---
+
+# Features
+
+Supported via Zigbee2MQTT:
 
 - Temperature
 - Humidity
-- Battery
-- Alarm thresholds
-- Sensitivity settings
-- Calibration
-- Correct device clock
+- Battery level
+- Temperature unit (°C / °F)
+- Temperature alarm thresholds
+- Humidity alarm thresholds
+- Temperature sensitivity
+- Humidity sensitivity
+- Temperature calibration
+- Humidity calibration
+- Report interval
 
-## Installation
+Additional fix:
 
-1. Copy the converter:
-/opt/zigbee2mqtt/data/external_converters/tze284_working.js
+- Correct device **clock synchronization**
 
-2. Add to `configuration.yaml`:
+---
 
->external_converters:
->
->&nbsp;&nbsp;&nbsp;&nbsp;external_converters/tze284_working.js
+# Device Display
 
+The device shows:
 
-4. Restart Zigbee2MQTT.
+- Time
+- Date
+- Temperature
+- Humidity
+- Comfort indicator
+- Battery level
+- Zigbee connection status
 
-5. Optional: remove and reinsert batteries and/or reconfigure the device
+---
 
-## Device
+# Firmware Issue
 
-Model: TS0601
+The firmware used in this device incorrectly interprets MCU time synchronization.
 
-Manufacturer: _TZE284_qf5mzewi
+The result is:
 
-## Firmware issue
+- incorrect clock on the display
+- typically **+7 hours offset**
 
-This device interprets MCU time incorrectly (UTC+8).  
-The converter compensates for this.
+This converter compensates for the issue when responding to the `commandMcuSyncTime` request from the device.
 
-## Author
+---
 
-Balint Vereskuti
+# Installation
+
+Copy the converter file:
+
+```
+/opt/zigbee2mqtt/data/external_converters/tze284.js
+```
+
+Add it to `configuration.yaml`:
+
+```
+external_converters:
+  - external_converters/tze284.js
+```
+
+Restart Zigbee2MQTT.
+
+---
+
+# Compatibility
+
+Tested with:
+
+- Zigbee2MQTT **2.x**
+- Tuya TS0601 (`_TZE284_qf5mzewi`)
+
+---
+
+# Author
+
+Balint Vereskuti  
+GitHub: https://github.com/kopaszsop
+
+---
+
+# License
+
+MIT
