@@ -4,7 +4,7 @@ External converter for the Tuya **TS0601 temperature & humidity sensor with disp
 
 This converter adds support for the device and fixes a **known firmware time synchronization bug**.
 
-![TS0601 Sensor](/pictures/sensor.png)
+![TS0601 Sensor](pictures/sensor.png)
 
 ---
 
