@@ -10,13 +10,13 @@ This converter adds support for the device and fixes a **known firmware time syn
 
 # Device
 
-| Property | Value |
+| Specification | |
 |--------|--------|
 | Model | TS0601 |
 | Manufacturer | `_TZE284_qf5mzewi` |
 | Vendor | Tuya |
 | Type | Temperature & Humidity Sensor |
-| Display | Temperature, Humidity, Comfort Indicator |
+| Display | Temperature, Humidity, Comfort Indicator, Date and Time |
 | Power | Battery |
 
 ---
@@ -72,20 +72,29 @@ This converter compensates for the issue when responding to the `commandMcuSyncT
 
 # Installation
 
-Copy the converter file:
+- Copy the converter file:
 
 ```
-/opt/zigbee2mqtt/data/external_converters/tze284.js
+/opt/zigbee2mqtt/data/external_converters/tze284_working.js
 ```
 
-Add it to `configuration.yaml`:
+- Add it to `configuration.yaml`:
 
 ```
 external_converters:
-  - external_converters/tze284.js
+  - external_converters/tze284_working.js
 ```
 
-Restart Zigbee2MQTT.
+or just
+
+```
+external_converters:
+  - tze284_working.js
+```
+
+- Restart Zigbee2MQTT.
+
+- Optional: remove and reinsert batteries and/or reconfigure the device in Zigbee2MQTT
 
 ---
 
